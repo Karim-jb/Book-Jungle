@@ -1,0 +1,23 @@
+.filterContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+.booksGrid {
+    margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+}
+.cardWrapper{
+    width: 240px;
+}
+@media (max-width: 768px){
+    .filterContainer{
+        gap: 30px;
+        flex-direction: column;
+    }
+}
