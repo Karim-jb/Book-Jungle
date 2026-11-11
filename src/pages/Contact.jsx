@@ -1,6 +1,30 @@
+import { useState } from "react";
 import styles from "../styles/contact.module.css";
 
 export default function Contact() {
+
+const [fname, setFname] = useState('')
+const [number, setNumber] = useState('')
+const [email, setEmail] = useState('')
+const [message, setMessage] = useState('')
+
+const [users,setUsers] = useState([])
+
+function handleSubmit(e){
+  if(fname === "" ||number === "" ||email === "" ||message === ""){
+    alert("please enter all fileds")
+    return
+  }
+  e.preventDefault()
+  setUsers([...users,{fname,number,email,message}])
+  setFname("")
+  setNumber("")
+  setEmail("")
+  setMessage("")
+  console.log(users)
+  alert(fname)
+}
+
   return (
     <div className={styles.page}>
       <div className={styles.titleSection}>
@@ -35,10 +59,12 @@ export default function Contact() {
           </div>
         </div>
 
-        <form className={styles.formSection}>
+        <form onSubmit={handleSubmit} className={styles.formSection}>
           <div className={styles.inputGroup}>
             <label className={styles.label}>Full Name</label>
             <input
+            onChange={(e)=>{setFname(e.target.value)}}
+            value={fname}
               type="text"
               className={styles.input}
               placeholder=""
@@ -48,6 +74,8 @@ export default function Contact() {
           <div className={styles.inputGroup}>
             <label className={styles.label}>Phone Number</label>
             <input
+            value={number}
+             onChange={(e)=>{setNumber(e.target.value)}}
               type="tel"
               className={styles.input}
               placeholder="+961"
@@ -57,6 +85,8 @@ export default function Contact() {
           <div className={styles.inputGroup}>
             <label className={styles.label}>Email Address</label>
             <input
+            value={email}
+             onChange={(e)=>{setEmail(e.target.value)}}
               type="email"
               className={styles.input}
               placeholder="name@example.com"
@@ -68,6 +98,10 @@ export default function Contact() {
             <textarea
               className={styles.textarea}
               placeholder="How can we help you?"
+              value={message}
+              onChange={(e)=>{
+                setMessage(e.target.value)
+              }}
             ></textarea>
           </div>
 
